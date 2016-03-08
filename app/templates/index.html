@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <div class="centered">
+    <ul>
+    <li>Step one:  <a href="{% url 'alcohol_create_view' %}">Add your favorite alcohol  <img src="https://www.emojibase.com/resources/img/emojis/apple/x1f378.png.pagespeed.ic.YHCVwcrGFS.png" width="20px", height="20">  </a></li>
+    <li>Step two:  <a href="{% url 'suggestion_create_view' %}">Add suggestions for others <img src="http://pix.iemoji.com/images/emoji/apple/ios-9/256/writing-hand.png" width="20px", height="20"></a></li>
+    <li>Step three:  <a href="#">Connect with others <img src="http://pix.iemoji.com/images/emoji/apple/ios-9/256/busts-in-silhouette.png" width="20px", height="20"></a></li>
+    </ul>
+    </div>
+      <table class="highlight">
+        <thead>
+          <tr>
+              <th data-field="id">Drinker</th>
+              <th data-field="name">Recent Suggestions</th>
+              <th data-field="price">Alcohol</th>
+              <th data-field="price">Date</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for suggestion in suggestions %}
+          <tr>
+                <td><a href="{% url 'user_detail_view' suggestion.user_id %}">{{ suggestion.user.get_username }}</a></td>
+                <td>{{ suggestion.body }}</td>
+                <td>{{ suggestion.alcohol.get }}</td>
+                <td>{{ suggestion.created }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endif %}
+{% endblock %}

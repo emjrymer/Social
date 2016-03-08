@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+    <title>Liquid Courage</title>
+</head>
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="{% url 'main_view' %}" class="brand-logo">#LiquidCourage <img src="http://emojipedia-us.s3.amazonaws.com/cache/f7/3b/f73b66c491417160b468bbaf92fcc76a.png" width="40px", height="40"></a>
+        <ul class="right hide-on-med-and-down">
+          {% if request.user.is_authenticated %}
+              <li><a href="{% url 'main_view' %}">Home</a></li>
+              <li><a href="{% url 'logout_view' %}" >{{ request.user }}, logout</a></li>
+          {% else %}
+              <li><a href="{% url 'login_view' %}">login</a></li>
+              <li><a href="{% url 'user_create_view' %}">Create Drinker</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+<div class="container">
+
+{% if request.user.is_authenticated %}
+    <h3 class="span">Salut, {{ request.user }}!</h3>
+{% endif %}
+{% block content %}
+{% endblock %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="">
+    $( document ).ready(function(){
+    $(".button-collapse").sideNav(); });
+</script>
+</body>
+</html>

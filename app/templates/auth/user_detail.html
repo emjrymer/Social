@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h5>{{ object.get_username }} - User Details</h5>
+    <table>
+        <thead>
+          <tr>
+              <th>favorite alcohol</th>
+              <th>age</th>
+              <th>followers</th>
+              <th>User Since</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ object.userprofile.favorite_alcohol }}</td>
+            <td>{{ object.userprofile.age }}</td>
+            <td>{{ object.userprofile.followers }}</td>
+            <td>{{ object.userprofile.created }}</td>
+          </tr>
+        </tbody>
+      </table>
+    <a href="{% url 'add_follower_view' object.id %}" class="waves-effect waves-light btn-large"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTrV79R6YC9sF9sf83Ez8_pmao6PqgHHYGn1VvzgC2JJuN7NJ95BA" width="40px", height="25">        Follow {{ object.get_username }}</a>
+{% endblock %}

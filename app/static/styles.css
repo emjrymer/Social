@@ -1,0 +1,18 @@
+select {
+    display: inline;
+}
+
+.span {
+    letter-spacing: 6px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.brand-logo{
+    font-style: italic;
+    font-family: Serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
