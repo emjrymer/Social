@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="highlight">
+        <thead>
+          <tr>
+              <th data-field="id">Drinker</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for user in object_list %}
+          <tr>
+              <td><a href="{% url 'user_detail_view' user.id %}">{{ user.user.get_username }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}

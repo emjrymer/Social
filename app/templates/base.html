@@ -16,6 +16,7 @@
         <ul class="right hide-on-med-and-down">
           {% if request.user.is_authenticated %}
               <li><a href="{% url 'main_view' %}">Home</a></li>
+              <li><a href="{% url 'user_list_view' %}">Users</a></li>
               <li><a href="{% url 'logout_view' %}" >{{ request.user }}, logout</a></li>
           {% else %}
               <li><a href="{% url 'login_view' %}">login</a></li>
@@ -34,9 +35,12 @@
 {% endblock %}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="application/javascript">
     $( document ).ready(function(){
-    $(".button-collapse").sideNav(); });
+        $(".button-collapse").sideNav();
+$('#modal1').openModal();
+    });
 </script>
 </body>
 </html>

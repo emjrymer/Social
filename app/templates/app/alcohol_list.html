@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for alc in object_list %}
+        <div><a href="{% url 'alcohol_detail_view' alc.id %}">{{ alc }}</a></div>
+    {% endfor %}
+{% endblock %}

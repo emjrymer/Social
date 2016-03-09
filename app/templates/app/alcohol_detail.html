@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h5>{{ object.get_username }} - User Details</h5>
+        <h5>{{ object.get_username }} - User Details</h5>
     <table>
         <thead>
           <tr>
@@ -24,5 +24,4 @@
           </tr>
         </tbody>
       </table>
-    <a href="{% url 'alcohol_create_view' %}" class="waves-effect waves-light btn-large"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTrV79R6YC9sF9sf83Ez8_pmao6PqgHHYGn1VvzgC2JJuN7NJ95BA" width="40px", height="25">        Follow {{ object.get_username }}</a>
 {% endblock %}

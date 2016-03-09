@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import CreateView, TemplateView, DetailView, ListView
+from django.views.generic import CreateView, TemplateView, DetailView, View, ListView
 
-from app.models import UserProfile, Suggestion, Alcohol, Follower
+from app.models import UserProfile, Suggestion, Alcohol, Follower, Like
 
 
 class NewUserCreationForm(UserCreationForm):
@@ -45,12 +45,20 @@ class AlcoholCreateView(CreateView):
     fields = ('alcohol_type',)
 
     def get_success_url(self):
-        return reverse("main_view")
+        return reverse("alcohol_list_view")
+
+
+class AlcoholListView(ListView):
+    model = Alcohol
+
+
+class AlcoholDetailView(DetailView):
+    model = Alcohol
 
 
 class SuggestionCreateView(CreateView):
     model = Suggestion
-    fields = ('body', 'alcohol')
+    fields = ('title', 'body', 'alcohol')
 
     def form_valid(self, form):
         suggestion_object = form.save(commit=False)
@@ -76,3 +84,25 @@ class AddFollower(DetailView):
 
 def redirect(request):
     return HttpResponseRedirect(reverse('main_view'))
+
+
+class FollowerListView(DetailView):
+    model = Follower
+
+
+class UserListView(ListView):
+    model = UserProfile
+
+
+class LikeView(View):
+
+    def get(self, pk):
+        new_user = User.objects.get(pk=self.request.user.id)
+        like = Like.objects.create(user=new_user)
+        suggestion = Suggestion.objects.get(pk=pk)
+        like.save()
+        suggestion.likes.add(like)
+        suggestion.save()
+        return HttpResponseRedirect('/')
+
+

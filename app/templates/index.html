@@ -7,16 +7,19 @@
     <ul>
     <li>Step one:  <a href="{% url 'alcohol_create_view' %}">Add your favorite alcohol  <img src="https://www.emojibase.com/resources/img/emojis/apple/x1f378.png.pagespeed.ic.YHCVwcrGFS.png" width="20px", height="20">  </a></li>
     <li>Step two:  <a href="{% url 'suggestion_create_view' %}">Add suggestions for others <img src="http://pix.iemoji.com/images/emoji/apple/ios-9/256/writing-hand.png" width="20px", height="20"></a></li>
-    <li>Step three:  <a href="#">Connect with others <img src="http://pix.iemoji.com/images/emoji/apple/ios-9/256/busts-in-silhouette.png" width="20px", height="20"></a></li>
+    <li>Step three:  <a href="{% url 'user_list_view' %}">Connect with others <img src="http://pix.iemoji.com/images/emoji/apple/ios-9/256/busts-in-silhouette.png" width="20px", height="20"></a></li>
     </ul>
     </div>
+    <br>
       <table class="highlight">
         <thead>
           <tr>
               <th data-field="id">Drinker</th>
+              <th data-field="title">Drink</th>
               <th data-field="name">Recent Suggestions</th>
               <th data-field="price">Alcohol</th>
               <th data-field="price">Date</th>
+              <th data-field="like">Like</th>
 
           </tr>
         </thead>
@@ -25,9 +28,13 @@
         {% for suggestion in suggestions %}
           <tr>
                 <td><a href="{% url 'user_detail_view' suggestion.user_id %}">{{ suggestion.user.get_username }}</a></td>
+                <td>{{ suggestion.title }}</td>
                 <td>{{ suggestion.body }}</td>
-                <td>{{ suggestion.alcohol.get }}</td>
+                <td>{% for alco in suggestion.alcohol.all %}
+                    {{ alco }}
+                    {% endfor %}</td>
                 <td>{{ suggestion.created }}</td>
+                <td><a href="{% url 'like_view' suggestion.id %}"><img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/aa/6eaa146fa36393e9eb4eec62c9d29334.png" width="20px", height="20"></a></td>
           </tr>
         {% endfor %}
         </tbody>
