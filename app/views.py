@@ -72,6 +72,11 @@ class SuggestionCreateView(CreateView):
 class UserDetailView(DetailView):
     model = User
 
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        context['user'] = UserProfile.objects.filter(id=self.kwargs['pk'])
+        return context
+
 
 class AddFollower(DetailView):
     model = Follower
@@ -95,14 +100,14 @@ class UserListView(ListView):
 
 
 class LikeView(View):
-
-    def get(self, pk):
-        new_user = User.objects.get(pk=self.request.user.id)
+    model = Like
+    
+    def get_object(self, pk):
+        new_user = User.objects.filter(pk=self.request.user_id)
+        print(new_user)
         like = Like.objects.create(user=new_user)
         suggestion = Suggestion.objects.get(pk=pk)
         like.save()
         suggestion.likes.add(like)
         suggestion.save()
         return HttpResponseRedirect('/')
-
-

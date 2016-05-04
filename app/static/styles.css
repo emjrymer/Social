@@ -15,4 +15,28 @@ select {
     font-family: Serif;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-left: 20px;
+}
+
+.highlight {
+    width: 600px;
+    margin: 1% 15% 0 15%;
+}
+
+tbody {
+    background-color: #F7E2DF;
+}
+
+#current-drinkers-title {
+    font-size: 135%;
+    font-weight: 500;
+}
+
+#current-drinkers-body {
+    color: white;
+    font-style: oblique;
+}
+
+#user-detail-table {
+    margin-bottom: 30px;
 }

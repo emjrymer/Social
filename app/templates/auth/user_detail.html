@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h5>{{ object.get_username }} - User Details</h5>
-    <table>
+    <h5>{{ object.userprofile.name }} - User Details</h5>
+    <table id="user-detail-table">
         <thead>
           <tr>
               <th>favorite alcohol</th>
@@ -19,7 +19,9 @@
               <td>{% for suggestion in object.userprofile.suggestions.all %}
                       {{ suggestion }}
                   {% endfor %}</td>
-            <td>{{ object.userprofile.followers.all }}</td>
+            <td>{% for follower in object.userprofile.followers.all %}
+                    <div>{{ follower }}</div>
+                 {% endfor %}</td>
             <td>{{ object.userprofile.created }}</td>
           </tr>
         </tbody>

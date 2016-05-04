@@ -2,24 +2,21 @@
 
 {% block content %}
     <h2 class="span">Login</h2>
-    <button data-target="modal1" class="btn modal-trigger">Modal</button>
-
+    <button data-target="modal1" class="btn modal-trigger">Over 21?</button>
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
-
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 class="brand-logo">#LiquidCourage <img src="http://emojipedia-us.s3.amazonaws.com/cache/f7/3b/f73b66c491417160b468bbaf92fcc76a.png" width="40px", height="40"></h4>
-      <p>You have to be 21 or older to enter out site.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">I am 21 or older</a>
-    </div>
-  </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Create
-            <i class="material-icons right">send</i>
-        </button>
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4 class="brand-logo">#LiquidCourage <img src="http://emojipedia-us.s3.amazonaws.com/cache/f7/3b/f73b66c491417160b468bbaf92fcc76a.png" width="40px", height="40"></h4>
+              <p>You have to be 21 or older to enter out site.</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#modal1" class=" modal-action modal-close waves-effect waves-green btn-flat">I am 21 or older</a>
+            </div>
+          </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Create
+        <i class="material-icons right">send</i>
+    </button>
     </form>
 {% endblock %}

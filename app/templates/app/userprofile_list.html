@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <table class="highlight">
-        <thead>
-          <tr>
-              <th data-field="id">Drinker</th>
-          </tr>
-        </thead>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title" id="current-drinkers-title">Members Currently Drinking</span>
+                {% for user in object_list %}
+                      <p><a id="current-drinkers-body"href="{% url 'user_detail_view' user.user.id %}">{{ user.user.get_username }}</a></p>
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+</div>
 
-        <tbody>
-        {% for user in object_list %}
-          <tr>
-              <td><a href="{% url 'user_detail_view' user.id %}">{{ user.user.get_username }}</a></td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
 {% endblock %}
